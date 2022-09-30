@@ -1,0 +1,60 @@
+﻿<partial name="~/Views/Shared/_PartialLogin.cshtml" />
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Đăng Nhập</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            @using (Ajax.BeginForm("Index", "LoginClient", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "update-login"
+            }))
+            {
+                <table style="margin-bottom:30px">
+                    <tr>
+                        <div>Tài Khoản </div>
+                        <div class="col-10 text-center"><input type="text" name="inputUsername" class="form-control"></div>
+                    </tr>
+                    <tr>
+                        <div>Mật Khẩu </div>
+                        <div class="col-10 text-center"><input type="password" id="inputPassword" name="inputPassword" class="form-control"></div>
+                    </tr>
+                    <tr>
+                        <p>
+                            <div style="margin-left:10%">Nhớ Mật Khẩu <input type="checkbox" value="true" name="isRememberPassword"> </div>
+
+                        </p>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button style="margin-left:70%" onclick="clickModalRegister()" class="btn btn-danger">Đăng Ký</button>
+                        </td>
+                        <td>
+                            <button style="margin-left:70%" type="submit" class="btn btn-success">Đăng Nhập</button>
+                        </td>
+                    </tr>
+                </table>
+            }
+            <div style="margin-bottom:20px" class="text-danger text-center" id="update-login"></div>
+        </div>
+    </div>
+</div>
+
+@{
+    Html.RenderPartial("~/Views/Shared/_PartialRegister.cshtml");
+}
+
+<script>
+    function clickModalRegister() {
+        $("#registerModal").modal();
+        $("#logoutModal").removeClass("show");
+        //$("#inputPassword").value = null;
+        var inputPassword = document.getElementById("inputPassword");
+        inputPassword.value = "";
+    }
+</script>

@@ -1,0 +1,29 @@
+﻿@model DoAnWeb.Models.Author
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+<link href="~/Content/Effect.css" rel="stylesheet" />
+<h2>TÁC GIẢ: @Model.AuthorName</h2>
+<hr />
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <h5>@Html.DisplayName("Tiểu Sử") : </h5>@Html.DisplayFor(model => model.History)
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<hr />
+<h4><p style="margin-left:10%" class="text-black-50"><i class="fas fa-book-reader"></i> Sách của ông ý nè</p></h4>
+<hr />
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 row">
+        @{
+            Html.RenderAction("GetBooksCards", "Books", new { books = ViewBag.Books });
+        }
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>

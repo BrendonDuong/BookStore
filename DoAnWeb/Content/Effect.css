@@ -1,0 +1,108 @@
+﻿.back-btn {
+    position: absolute;
+    top: 42%;
+    z-index:56;
+    cursor: pointer;
+    left:0;
+    background-color: white;
+    transition: 0.5s;
+    width: 30px
+}
+
+    .back-btn:hover {
+        position: absolute;
+        top: 42%;
+        z-index: 5;
+        cursor: pointer;
+        background-color: cadetblue;
+        transform: translate(-5px, 0px);
+        color: white;
+    }
+
+.next-btn {
+    position: absolute;
+    top: 42%;
+    right:0;
+    cursor: crosshair;
+    z-index: 5;
+    background-color: white;
+    transition: 0.5s;
+    width: 30px;
+}
+
+    .next-btn:hover {
+        position: absolute;
+        top: 42%;
+        z-index: 5;
+        cursor:pointer;
+        width: 30px;
+        background-color: cadetblue;
+        transform: translate(5px, 0px);
+        color: white;
+    }
+.iPoiter {
+    cursor: pointer;
+    z-index:1;
+}
+#cf2 {
+    position: relative;
+    height: 281px;
+    width: 450px;
+    margin: 0 auto;
+}
+
+    #cf2 img {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: opacity 1s ease-in-out;
+        -moz-transition: opacity 1s ease-in-out;
+        -o-transition: opacity 1s ease-in-out;
+        transition: opacity 1s ease-in-out;
+    }
+
+        #cf2 img.transparent {
+            opacity: 0;
+        }
+
+#cardBook {
+    height: 400px;
+    border: none;
+    text-align: center;
+    z-index: 6;
+    transition:0.5s;
+}
+    #cardBook:hover {
+        transform: scale(1.1, 1.1);
+        text-align: center;
+        z-index: 7;
+    }
+    #cardBook img {
+        width: 184.86px;
+        height: 276.23px;
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: -1;
+    }
+.cardBook-footer {
+    overflow: hidden;
+    width: 100%;
+    height: 100px;
+}
+.cardBook-title {
+    overflow: hidden;
+    width: 100%;
+    height: 20px;
+    font-size: 13px
+}
+.cardBook-price {
+    color: red;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    font-style: oblique
+}

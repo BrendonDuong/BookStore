@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    @Styles.Render("~/bundles/adminCss")
+    <link href="~/Content/Client.css" rel="stylesheet" />
+</head>
+<body id="page-top" class="sidebar-toggled">
+    <div class="top-banner top-link">
+        <div class="top-banner-block">
+            <p>
+                <a href="#">
+                    <img src="https://www.fahasa.com/media/wysiwyg/Thang-1-2019/Sap-gia-bat-ngo-1263x80-1.jpg" alt="">
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="wrapper">
+            <div class="topbar">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="pull-left">
+                            <ul>
+                                <li>
+                                    <a href="tel:+84 123 456 789">
+                                        <i class="fa fa-phone"></i>
+                                        +84 123 456 789
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-envelope-o"></i>
+                                        DatLv1@fsoft.com.vn
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="pull-right">
+                            <div class="form-language">
+                                <ul>
+                                    <li>
+                                        <img src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/default.png" class="lang-flag-img" lang="default" alt="">
+                                    </li>
+                                    <li>
+                                        <img src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/english.png" class="lang-flag-img" lang="english" alt="">
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="form-love">
+                                <a href="#" class="dropdown-toggle" id="drop61" data-toggle="dropdown">
+                                    <i class="fa fa-heart-o"></i>
+                                    <span>Yêu thích</span>
+                                </a>
+                            </div>
+                            <div class="form-user">
+                                @if (Session["userClient"] != null)
+                                {
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                                        <span>@Session["userClient"]</span>
+                                    </a>
+                                    <div class="nav_desktop dropdown-menu" aria-labelledby="userDropdown">
+                                        @*<div class="dropdown-header">Wellcome @Session["userClient"]</div>*@
+                                        @if (Session["user"] != null)
+                                        {
+                                            <a class="dropdown-item" href="~/Admin/Home">Quản Trị</a>
+                                        }
+                                        <a class="dropdown-item" href="~/LoginClient/Logout">Đăng Xuất</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <a class="text-white dropdown-toggle" href="" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                                        <span>Đăng nhập</span>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-main">
+                <div class="header-top">
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a href="~/Books/Index">
+                                <img class="img-logo" src="~/Assest/Thumnail/logoa.PNG" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="box search_box ">
+                            <form id="search_mini_form" action="https://www.fahasa.com/catalogsearch/result/" method="get">
+                                <div class="search pull-left">
+                                    <div class="form-search">
+                                        @*<input name="page" value="1" id="search" type="text" autocomplete="off" placeholder="Tìm kiếm sản phẩm mong muốn..." class="input-search ">*@
+                                        <input type="text" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="input-search dropdown-toggle" placeholder="Tìm kiếm sản phẩm mong muốn..." aria-label="Search" aria-describedby="basic-addon2" id="textSearch" name="name">
+                                        <div class="nav_desktop dropdown-menu" id="divPartialSearch"></div>
+                                        <span class="button-search fa fa-search"></span>
+                                        <div id="search_autocomplete" class="search-autocomplete"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="cart-shop">
+                            <div class="cart-inner">
+                                <a href="~/Order/BookCart">
+                                    <div class="shopping-cart-icon">
+                                        <span class="hidden"></span>
+                                    </div>
+                                    <div class="cart-total">
+                                        <h3>Giỏ Hàng  </h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+            <a class="nav-link navbar-brand" href="~/Order/BookCart" id="pagesDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-cart-plus"></i>
+                <span>Giỏ Hàng</span>
+            </a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle navbar-brand" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-fw fa-folder"></i>
+                    <span>Loại Sách</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                    @foreach (var item in ViewBag.Cate)
+                    {
+                        <a class="dropdown-item" href="~/Books/SearchByCate/@item.CateId/1">@item.CateName</a>
+                    }
+                </div>
+            </div>
+            <!-- Navbar Search -->
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" method="post" action="~/Books/SearchByName" autocomplete="off">
+                <div class="input-group dropdown no-arrow">
+                    <input type="text" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="form-control dropdown-toggle" placeholder="Tìm Kiếm..." aria-label="Search" aria-describedby="basic-addon2" id="textSearch" name="name">
+                    <div class="dropdown-menu dropdown-menu-right" id="divPartialSearch">
+
+                    </div>
+                    <input type="hidden" name="page" value="1" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+            <!-- Navbar -->
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown no-arrow">
+                    @if (Session["userClient"] != null)
+                    {
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user-circle fa-fw"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <div class="dropdown-header">Wellcome @Session["userClient"]</div>
+                            @if (Session["user"] != null)
+                            {
+                                <a class="dropdown-item" href="~/Admin/Home">Quản Trị</a>
+                            }
+                            <a class="dropdown-item" href="~/LoginClient/Logout">Đăng Xuất</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <a class="text-white" href="" data-toggle="modal" data-target="#logoutModal">Đăng Nhập</a>
+                    }
+                </li>
+            </ul>
+        </nav>*@
+
+
+    <div id="wrapper" style="margin-top:2px">
+        <!--Body-->
+        <div id="content-wrapper">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+
+
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright © Your Website 2018</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- /#wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Login Modal-->
+    @{
+        Html.RenderPartial("~/Views/Shared/_PartialLogin.cshtml");
+    }
+
+
+    @using (Ajax.BeginForm("GetSearchResult", "Books", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "divPartialSearch"
+    }))
+    {
+        <input type="hidden" name="search" id="hiddenStr" />
+        <input type="submit" id="btnsSubmitAjax" style="display:none;" />
+    }
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    @Scripts.Render("~/bundles/adminJs")
+    <script src="~/Scripts/Effect.js"></script>
+    @Scripts.Render("~/bundles/ajax")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $("#textSearch").keyup(function () {
+            var btnSubmit = document.getElementById("btnsSubmitAjax");
+            var textSearch = document.getElementById("textSearch");
+            var searchStr = document.getElementById("hiddenStr");
+            if (textSearch.value != '')
+                $('#divPartialSearch').addClass("show");
+            else
+                $('#divPartialSearch').removeClass("show");
+            searchStr.value = textSearch.value;
+            btnSubmit.click();
+        })
+    </script>
+</body>
+</html>

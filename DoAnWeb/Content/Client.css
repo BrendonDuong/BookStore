@@ -1,0 +1,288 @@
+﻿body{
+    background:#f0f0f0 !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.top-link.top-banner {
+    background-color: #680001;
+}
+
+.top-banner-block {
+    text-align: center;
+}
+
+.topbar .pull-left ul {
+    padding: 0;
+    list-style: none;
+}
+
+.topbar .pull-left ul li {
+    display: inline-flex;
+    margin-right: 10px;
+}
+
+.topbar .pull-left ul li:first-child {
+    border-right: 1px solid #aaa;
+    padding-right: 15px;
+}
+
+.topbar .pull-left ul li a {
+    color: #666;
+}
+
+.form-language ul {
+    list-style: none;
+}
+
+.form-language ul li {
+    display: inline-flex;
+}
+
+.pull-right > div {
+    float: left;
+    margin-left: 25px;
+}
+
+.form-user ul {
+    list-style: none;
+    padding: 0;
+}
+
+.form-user ul li {
+    display: inline-flex;
+}
+
+.form-user ul li a, .form-love a, .form-user a {
+    color: #666;
+}
+
+.wrapper .topbar {
+    padding-top: 15px;
+}
+
+.img-logo {
+    width: 100%;
+    padding: 0 35px;
+    /*height:80px;
+    object-fit:scale-down;*/
+}
+
+.search.pull-left {
+    width: 100%;
+}
+
+.form-search input {
+    border: 2px solid #F7941E;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 40px;
+}
+
+span.button-search.fa.fa-search {
+    color: #F7941E;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    top: -61px;
+    width: 50px;
+    height: 42px;
+    line-height: 45px;
+    text-align: center;
+    float: right;
+    left: 0;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.header-top > div {
+    height: 80px;
+    line-height: 80px;
+    /*overflow:hidden;*/
+}
+
+.cart-shop .shopping-cart-icon {
+    background: url(https://www.fahasa.com/skin/frontend/base/default/images/m1.png) no-repeat center center;
+    width: 58px;
+    height: 80px;
+    bottom: 0;
+    position: absolute;
+}
+
+.cart-shop .cart-total {
+    color: #666;
+    padding-left: 50px;
+    height: 80px;
+}
+
+.cart-shop h3 {
+    line-height: 80px;
+    text-transform: uppercase;
+    color: #F7941E;
+    font-size: 12px;
+    margin: 0;
+}
+
+div#divPartialSearch {
+    width: calc(100% - 30px);
+}
+
+.box-search-logo{
+    background:#fff;
+}
+
+li {
+    list-style: none;
+}
+
+.container-fluid{
+    padding-left:0 !important;
+    padding-right:0 !important;
+}
+
+.left-sidebar-header {
+    padding: 0 10px;
+    background: #f7931e;
+}
+
+.left-sidebar-content ul {
+    padding-left: 0;
+}
+
+.left-sidebar-content ul .sub-menu {
+    display: none;
+    top: 0;
+    opacity: 0;
+    position: absolute;
+    background-color: transparent;
+    z-index: 999;
+    left: 95% !important;
+    width: 265px;
+    transition: opacity .9s ease-out;
+    background:#fff;
+}
+
+.left-sidebar-header, .right-sidebar-header {
+    height: 45px;
+    line-height: 45px;
+}
+
+.left-sidebar-header a {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-wight: 400;
+}
+
+.left-sidebar-header a i {
+    float: right;
+    line-height: 45px;
+}
+
+.right-sidebar-header ul {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.right-sidebar-header ul li {
+    display: inline-block;
+    padding-right: 20px;
+}
+
+.right-sidebar-header ul li a{
+    color:#000;
+    font-size:16px;
+}
+
+.left-sidebar-content{
+    background:#fff;
+}
+
+.left-sidebar-content h2 {
+    margin: 0;
+    padding: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid;
+}
+
+.left-sidebar-content li a i {
+    float: right;
+    line-height: 20px;
+    color: #333;
+}
+
+.left-sidebar-content li {
+    padding: 10px;
+}
+
+.left-sidebar-content li a {
+    color: #333;
+    display:block;
+}
+
+.left-sidebar-content li:hover .sub-menu {
+    display:block;
+    opacity: 1;
+}
+
+.left-sidebar-banner {
+    overflow: hidden;
+    height: 262px;
+}
+
+.left-sidebar-banner img {
+    object-fit: scale-down;
+    height: 262px;
+}
+
+#owl-demo .item {
+    margin: 3px;
+}
+
+#owl-demo .item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+div#cardBook {
+    overflow: hidden;
+    height: 250px;
+}
+
+div#cardBook img {
+    object-fit: scale-down;
+    height: 250px;
+}
+
+.banner-top {
+    margin-top: 30px;
+}
+
+.banner-home-inner {
+    overflow: hidden;
+}
+
+.banner-home-inner img {
+    max-width: 100%;
+    height: 180px;
+}
+
+.content-product-vh{
+    margin-top:50px;
+}
+
+.content-product-vh h4{
+    text-transform:uppercase;
+    font-size:15px;
+    color:#333;
+    padding:15px;
+}
+
+form#form13{
+    padding:0 50px;
+}

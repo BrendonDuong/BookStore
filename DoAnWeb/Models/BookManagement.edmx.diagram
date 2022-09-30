@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="48864cece1864a80a840ba8c5c0fa253" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="BookManagementModel.Author" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookManagementModel.Book" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookManagementModel.Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookManagementModel.Comment" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookManagementModel.OrderBook" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookManagementModel.OrderBookDetail" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookManagementModel.Publisher" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookManagementModel.sysdiagram" Width="1.5" PointX="8.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookManagementModel.User" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="BookManagementModel.FK_AuthorId" ManuallyRouted="false" />
+        <AssociationConnector Association="BookManagementModel.FK_BookId" ManuallyRouted="false" />
+        <AssociationConnector Association="BookManagementModel.FK_BookIdOrderBook" ManuallyRouted="false" />
+        <AssociationConnector Association="BookManagementModel.FK_CateId" ManuallyRouted="false" />
+        <AssociationConnector Association="BookManagementModel.FK_PubId" ManuallyRouted="false" />
+        <AssociationConnector Association="BookManagementModel.FK_UsernameComment" ManuallyRouted="false" />
+        <AssociationConnector Association="BookManagementModel.FK_OrderId" ManuallyRouted="false" />
+        <AssociationConnector Association="BookManagementModel.FK_UsernameOrderBook" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

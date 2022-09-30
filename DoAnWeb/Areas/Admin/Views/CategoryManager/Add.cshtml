@@ -1,0 +1,52 @@
+﻿@model DoAnWeb.Models.Category
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thêm Loại Sách</h2>
+<p style="color:darkgreen">@ViewBag.Report</p>
+<div class="row" style="margin-bottom:30px">
+    <div class="col">
+        @Html.ActionLink("Về Lại Danh Sách", "Index")
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal row">
+        <div class="col-1"></div>
+        <div class="col-5">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CateName, "Tên Loại Sách", htmlAttributes: new { @class = "control-label col-md-4" })
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CateName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CateName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, "Mô Tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextArea("Description", new { htmlAttributes = new { @class = "form-control" }, @cols = "60", @rows = "7" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm" class="btn btn-default" onclick="return IsEmptyInformationCategory()" />
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-5">
+        </div>
+    </div>
+    @Scripts.Render("~/Scripts/Effect.js");
+}

@@ -1,0 +1,85 @@
+﻿@model List<DoAnWeb.Models.Book>
+
+@foreach (var item in Model)
+{
+    <div class="card col-md-2" id="cardBook">
+        <a href="~/Books/Detail/@item.BookId"><img src="~/Assest/Thumnail/@item.ImgUrl"></a>
+        <div class="card-text cardBook-footer">
+            <div class="cardBook-title">@item.Title</div>
+            @if (item.IsActive)
+            {
+                <div class="cardBook-price">
+                    <p>@item.Price VND</p>
+                    <button class="btn btn-danger" onclick="clickModal(@item.BookId)">Mua</button>
+                    <button class="btn btn-primary"><a style="color:white" href="~/Books/Detail/@item.BookId">Xem</a></button>
+                </div>
+            }
+            else
+            {
+                <p class="cardBook-price">Ngừng Bán</p>
+            }
+        </div>
+    </div>
+
+    <div class="modal fade" id=@string.Format("myModal{0}",item.BookId) role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content book-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Mua Sách: @item.Title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        @using (Ajax.BeginForm("../Order/PushCart", new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = string.Format("update-me{0}", item.BookId)
+                        }))
+                        {
+                            <table>
+                                <tr>
+                                    <td>
+                                        <b>Tác Giả: </b>@item.Author.AuthorName
+                        <p>@item.Summary</p>
+                        </td>
+                        <td>
+                            <img src="~/Assest/Thumnail/@item.ImgUrl" ) style="width:129px;height:192px">
+                        </td>
+                        </tr>
+                        <tr>
+                            <td>Số Lượng: </td>
+                            <td>
+                                <input type="number" class="form-control col-10" min="1" value="1" max="@item.Quantity" name="quantity" />
+                                <input type="hidden" value="@item.BookId" name="BookId" />
+                                <input type="hidden" value="@item.Price" name="price" />
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-cart-plus">Thêm Vô Giỏ</i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><div id=@string.Format("update-me{0}",item.BookId) class="row"></div></td>
+                        </tr>
+                        </table>
+                    }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+@Scripts.Render("~/bundles/ajax")
+<script>
+    var divCard = document.getElementById("cardBook");
+        var isSmall = '@ViewBag.IsSmall';
+        if (isSmall!= "")
+            divCard.classList.remove("col-md-2");
+
+    function clickModal(id) {
+        $("#myModal" + id).modal();
+    }
+</script>

@@ -1,0 +1,117 @@
+﻿@model DoAnWeb.Models.Book
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<h2>@Model.Title</h2>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-4">
+                <dl class="dl-horizontal">
+                    <dd>
+                        <img src="~/Assest/Thumnail/@Model.ImgUrl" ) style="width:258px;height:384px">
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-6">
+                <dl class="dl-horizontal">
+                    <h3>
+                        <dt>
+                            @Html.DisplayName("Tác giả") :  <a href="~/Authors/Detail/@Model.AuthorId">@Model.Author.AuthorName</a>
+                        </dt>
+                    </h3>
+                    <b>@Html.DisplayName("Tóm Tắt") : </b>@Html.DisplayFor(model => model.Summary)
+                    <dd>
+                        @if (Model.IsActive == false)
+                        {
+                            <i class="fas fa-exclamation-triangle" style="font-size:30px;color:red"></i>
+                            <label style="font-size:40px;color:red">Ngừng Bán</label>
+                        }
+                        else
+                        {
+                            <b>Giá Tiền : </b>
+                            <label style="font-style:oblique; color:red; width:unset ;font-size:xx-large; text-transform:fullsize-kana">
+                                @Html.DisplayFor(model => model.Price) VND
+                            </label>
+                            <div class="row">
+                                @using (Ajax.BeginForm("../Order/PushCart", new AjaxOptions
+                                {
+                                    HttpMethod = "POST",
+                                    InsertionMode = InsertionMode.Replace,
+                                    UpdateTargetId = "update-me"
+                                }))
+                                {
+                                    int defaultQuantity = 1;
+                                    <table style="margin-left:15px">
+                                        <tr>
+                                            <td><b>Số Lượng: </b></td>
+                                            <td>
+                                                <input type="number" name="Quantity" class="form-control col-6" max="@Model.Quantity" , min="1" , Style="margin-left:20px" value="1" />
+                                                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                                                @Html.HiddenFor(model => model.BookId, new { @value = Model.BookId })
+                                                @Html.ValidationMessageFor(model => model.BookId, "", new { @class = "text-danger" })
+                                                @Html.HiddenFor(model => model.Price, new { @value = Model.Price })
+                                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                            </td>
+                                            <td>
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="glyphicon glyphicon-refresh fas fa-cart-plus"></i>
+                                                    Thêm Vào Giỏ
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><div id="update-me" class="row"></div></td>
+                                        </tr>
+                                    </table>
+                                }
+
+                            </div>
+                        }
+                    </dd>
+                    <dd>
+                        <b>Số Lượng Trong Kho : </b>@Model.Quantity
+                    </dd>
+                    <b>Ngày Xuất Bản : </b>@Model.CreatedDate.ToString("dd/MM/yyyy")
+                    </dd>
+                    <dd>
+                        <b>Ngày Tái Bản : </b>@Model.ModifiedDate.ToString("dd/MM/yyyy")
+                    </dd>
+                    <dd>
+                        <b>Thể Loại : </b>@Html.DisplayFor(model => model.Category.CateName)
+                    </dd>
+                    <dd>
+                        <b>Nhà Xuất Bản : </b>@Html.DisplayFor(model => model.Publisher.Name)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                @{
+                    Html.RenderAction("ShowComment", "Comment", new { id = Model.BookId });
+                }
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        @{
+            Html.RenderAction("GetBookByAuthor", "PopularContent", new { AuthorId = Model.AuthorId, BookId = Model.BookId });
+        }
+    </div>
+</div>
+<p class="text-center">
+    @Html.ActionLink("Về Danh Sách Chính", "Index")
+</p>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+@Scripts.Render("~/bundles/ajax")
+

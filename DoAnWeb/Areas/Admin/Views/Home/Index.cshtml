@@ -1,0 +1,70 @@
+﻿@model List<DoAnWeb.Models.OrderBookDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@Styles.Render("~/bundles/adminTableCss")
+<link href="../Content/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="~/Scripts/v4-shims.js"></script>
+<div class="row">
+    <div class="col-md-2"></div>
+    <button class="btn btn-danger col-md-2" onclick="location.href='../Admin/BookManager';" style="height:100px">
+        <i class="fa fa-book"></i>
+        <span>Quản Lý Sách</span>
+    </button>
+    <div class="col-md-1"></div>
+    <button class="btn btn-dark col-md-2" onclick="location.href='../Admin/AccountManager';" style=" height:100px">
+        <i class="fa fa-user-circle"></i>
+        <span>Quản Lý Tài Khoản</span>
+    </button>
+    <div class="col-md-1"></div>
+    <button class="btn btn-success col-md-2" onclick="location.href='../Books';" style=" height:100px">
+        <i class="fa fa-building"></i>
+        <span>Cửa Hàng</span>
+    </button>
+</div>
+<div>
+    <div class="row">
+        <div class="col-10"></div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable">
+            <thead>
+                <tr role="row">
+                    <th>Mã HĐ</th>
+                    <th>Ngày Lập</th>
+                    <th>Mã Sách</th>
+                    <th>Tên Sách</th>
+                    <th>TK Khách Hàng</th>
+                    <th>Số Lượng</th>
+                    <th>Giá Tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DoAnWeb.Models.OrderBookDetail item in Model)
+                {
+                    <tr>
+                        <td>@item.OrderId</td>
+                        <td>@item.OrderBook.OrderDate</td>
+                        <td>@item.BookId</td>
+                        <td>@item.Book.Title</td>
+                        <td>@item.OrderBook.Username</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Scripts.Render("~/bundles/adminTableJs")
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+</script>

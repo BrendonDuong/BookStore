@@ -1,0 +1,131 @@
+﻿@model DoAnWeb.Models.Book
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thêm Sách</h2>
+<p style="color:darkgreen">@ViewBag.Report</p>
+<div class="row" style="margin-bottom:30px">
+    <div class="col">
+        @Html.ActionLink("Về Lại Danh Sách", "Index")
+    </div>
+</div>
+
+@using (Html.BeginForm("Add", "BookManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal row">
+        <div class="col-1"></div>
+        <div class="col-5">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, "Tiêu Đề", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CateId, "Loại Sách", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CateId", (IEnumerable<SelectListItem>)ViewBag.Categories, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CateId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AuthorId, "Tác Giả", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("AuthorId", (IEnumerable<SelectListItem>)ViewBag.Authors, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AuthorId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PubId, "Nhà Xuất Bản", htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.DropDownList("PubId", (IEnumerable<SelectListItem>)ViewBag.Publishers, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PubId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Summary, "Tóm Tắt", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextArea("Summary", new { htmlAttributes = new { @class = "form-control" }, @cols = "60", @rows = "7" })
+                    @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm" class="btn btn-default" onclick="return IsEmptyInformationBook()" />
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-5">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, "Giá Tiền", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                S
+                @Html.LabelFor(model => model.Quantity, "Số Lượng", htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreatedDate, "Ngày Xuất Bản", htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CreatedDate, new { type = "date", @class = "form-control text-box single-line" })
+                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ModifiedDate, "Ngày Tái Bản", htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ModifiedDate, new { type = "date", @class = "form-control text-box single-line", onchange = "MinIsAnotherValue('CreatedDate','ModifiedDate','Ngày tái bản phải sau ngày sản xuất');" })
+                    @Html.ValidationMessageFor(model => model.ModifiedDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.LabelFor(model => model.IsActive, "Được Phép Bán", htmlAttributes: new { @class = "control-label col-md-4", style = "margin-left:-12px" })
+                    @Html.CheckBoxFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        @Html.LabelFor(model => model.ImgUrl, "Ảnh Đại Diện", htmlAttributes: new { @class = "control-label col-md-12" })
+                        <p class="col-md-10">
+                            @*@Html.TextBoxFor(model=>model.ImgFile, "", new { type = "file", id = "thumnail",name= "ImgFile", onchange= "readURL(this)" })*@
+                            <input type="file" id="thumnail" name="thumnail" onchange="readURL(this)" />
+                        </p>
+                    </div>
+                    <div class="col">
+                        <img id="canvasImg" style="width:129px; height:192px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/Scripts/jquery-3.3.1.js");
+    @Scripts.Render("~/Scripts/Effect.js");
+}

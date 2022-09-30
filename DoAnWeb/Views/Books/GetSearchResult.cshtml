@@ -1,0 +1,30 @@
+﻿<div id="ddlAjax">
+    <div class="dropdown-header col-10">Tác Giả</div>
+    @{
+        if (ViewBag.Authors != null)
+        {
+            var maxCountAuthor = 0;
+            if (ViewBag.Authors.Count > 3)
+            { maxCountAuthor = 3; }
+            else { maxCountAuthor = ViewBag.Authors.Count; }
+            for (int i = 0; i < maxCountAuthor; i++)
+            {
+                <a class="dropdown-item col-10" href="~/Authors/Detail/@ViewBag.Authors[i].AuthorId">@ViewBag.Authors[i].AuthorName</a>
+            }
+        }
+    }
+    <div class="dropdown-header col-10">Sách</div>
+    @{
+        if (ViewBag.Books != null)
+        {
+            var maxCountBooks = 0;
+            if (ViewBag.Books.Count > 5)
+            { maxCountBooks = 5; }
+            else { maxCountBooks = ViewBag.Books.Count; }
+            for (int i = 0; i < maxCountBooks; i++)
+            {
+                <a class="dropdown-item col-10" href="~/Books/Detail/@ViewBag.Books[i].BookId">@ViewBag.Books[i].Title</a>
+            }
+        }
+    }
+</div>

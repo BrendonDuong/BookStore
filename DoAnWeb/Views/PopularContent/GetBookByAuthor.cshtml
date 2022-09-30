@@ -1,0 +1,8 @@
+﻿@model IEnumerable<DoAnWeb.Models.Book>
+
+<link href="~/Content/Effect.css" rel="stylesheet" />
+<b>Sách cùng tác giả</b>
+<hr />
+@{
+    Html.RenderAction("GetBooksCards", "Books", new { books = Model, isSmall = 1 });
+}

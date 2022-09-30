@@ -1,0 +1,51 @@
+﻿<partial name="~/Views/Shared/_PartialRegister.cshtml" />
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Đăng Ký</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            @using (Ajax.BeginForm("Register", "Login", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "update-register"
+            }))
+            {
+                <table style="margin-bottom:30px">
+                    <tr>
+                        <div style="margin-left:10%">Email </div>
+                        <div class="col-10 text-center">
+                            <input type="text" name="regisEmail" class="form-control">
+                        </div>
+                    </tr>
+                    <tr>
+                        <div style="margin-left:10%">Tài Khoản </div>
+                        <div class="col-10 text-center"><input type="text" name="regisUsername" class="form-control"></div>
+                    </tr>
+                    <tr>
+                        <div style="margin-left:10%">Mật Khẩu </div>
+                        <div class="col-10 text-center"><input type="password" name="regisPassword" class="form-control"></div>
+                    </tr>
+                    <tr>
+                        <div style="margin-left:10%">Nhập Lại Mật Khẩu </div>
+                        <div class="col-10 text-center"><input type="password" name="regisRePassword" class="form-control"></div>
+                    </tr>
+                    <tr>
+                        <p>
+                            <div style="margin-left:10%">Nhớ Mật Khẩu <input type="checkbox" value="true" name="regisIsRememberPassword"> </div>
+
+                        </p>
+                    </tr>
+                    <tr>
+                        <button style="margin-left:70%" type="submit" class="btn btn-success">Đăng Ký</button>
+                    </tr>
+                </table>
+            }
+            <div style="margin-bottom:20px" class="text-danger text-center" id="update-register"></div>
+        </div>
+    </div>
+</div>

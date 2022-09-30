@@ -1,0 +1,12 @@
+﻿@model List<DoAnWeb.Models.Publisher>
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="#">@Html.DisplayFor(modelItem => item.Name)</a>
+    </li>
+}

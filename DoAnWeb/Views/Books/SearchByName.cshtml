@@ -1,0 +1,58 @@
+﻿@model List<DoAnWeb.Models.Book>
+
+@{
+    ViewBag.Title = "SearchByName";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<link href="~/Content/Effect.css" rel="stylesheet" />
+
+<h4>Kết Quả Tìm Theo Từ Khóa "@ViewBag.SearchKey"</h4>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-10 row">
+        @{
+            Html.RenderAction("GetBooksCards", "Books", new { books = Model });
+        }
+    </div>
+    <div class="col"></div>
+</div>
+<div class="row">
+    <div class="col-1">
+        @if (ViewBag.PageIndex != 1)
+        {
+            using (Html.BeginForm())
+            {
+                int nextPage = ViewBag.PageIndex - 1;
+                <input type="hidden" value="@nextPage" name="page" />
+                <input type="hidden" value="@ViewBag.SearchKey" name="name" />
+                <input type="submit" class="btn btn-dark" value="prev" />
+            }
+        }
+    </div>
+    <div class="col-10 text-center">
+        @using (Html.BeginForm())
+        {
+            <input type="number" class="text-body col-1" value="@ViewBag.PageIndex" min="1" name="page" />
+            <input type="hidden" value="@ViewBag.SearchKey" name="name" />
+            <input type="submit" class="btn btn-dark" value="GO" />
+        }
+    </div>
+    <div class="col-1">
+        @if (Model.Count > 0)
+        {
+            using (Html.BeginForm())
+            {
+                int nextPage = ViewBag.PageIndex + 1;
+                <input type="hidden" value="@nextPage" name="page" />
+                <input type="hidden" value="@ViewBag.SearchKey" name="name" />
+                <input type="submit" class="btn btn-dark" value="next" />
+            }
+
+        }
+    </div>
+</div>
+
+
+
+

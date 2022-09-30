@@ -1,0 +1,75 @@
+﻿@model DoAnWeb.Models.User
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thêm Tài Khoản</h2>
+<p style="color:darkgreen">@ViewBag.Report</p>
+<div class="row" style="margin-bottom:30px">
+    <div class="col">
+        @Html.ActionLink("Về Lại Danh Sách", "Index")
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal row">
+        <div class="col-1"></div>
+        <div class="col-5">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, "Username", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, "Password", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-5">
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            @Html.LabelFor(model => model.IsActive, "Được Sử Dụng", htmlAttributes: new { @class = "control-label col-5" })
+            @Html.CheckBoxFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-4">
+            @Html.LabelFor(model => model.IsAdmin, "Quyền Admin", htmlAttributes: new { @class = "control-label col-4", style = "margin-left:-120px" })
+            @Html.CheckBoxFor(model => model.IsAdmin, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm" class="btn btn-default" onclick="return IsEmptyInformationBook()" />
+        </div>
+    </div>
+    @Scripts.Render("~/Scripts/Effect.js");
+}

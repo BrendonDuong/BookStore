@@ -1,0 +1,54 @@
+﻿@model DoAnWeb.Models.Publisher
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h2>Sửa Thông Tin Nhà Cung Cấp</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PubId, new { @value = Model.PubId })
+    @Html.ValidationMessageFor(model => model.PubId, "", new { @class = "text-danger" })
+    <div class="form-horizontal row">
+        <div class="col-1">
+        </div>
+        <div class="col-5">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, "Tên Nhà Xuất Bản", htmlAttributes: new { @class = "control-label col-md-4" })
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", value = Model.Name } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, "Mô Tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextArea("Description", new { htmlAttributes = new { @class = "form-control" }, @cols = "60", @rows = "7", @value = Model.Description })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-5">
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Sửa" onclick="return IsEmptyInformationCategory('Name')" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+    @Scripts.Render("~/Scripts/Effect.js");
+}
+<div class="row" style="margin-bottom:30px">
+    <div class="col">
+        @Html.ActionLink("Về Lại Danh Sách", "Index")
+    </div>
+</div>

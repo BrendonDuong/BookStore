@@ -1,0 +1,5 @@
+﻿@model List<DoAnWeb.Models.Book>
+
+@{
+    Html.RenderAction("GetBooksCards", "Books", new { books = Model });
+}

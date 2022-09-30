@@ -1,0 +1,34 @@
+﻿@model List<DoAnWeb.Models.Comment>
+@if (Session["userClient"] != null)
+{
+    using (Html.BeginForm("Add", "Comment", FormMethod.Post))
+    {
+        <h4>Bình Luận Với Tài Khoản @Session["userClient"]</h4>
+        <textarea name="content" rows="5" cols="100" class="form-control" maxlength="300" placeholder="300 từ">
+        </textarea>
+        <input type="hidden" value=@ViewBag.BookId name="bookId">
+        <button type="submit" class="btn btn-primary" style="margin-left:96%;margin-top:10px">Gửi</button>
+
+    }
+}
+else
+{
+    <button class="btn btn-danger" data-toggle="modal" data-target="#logoutModal">
+        Đăng Nhập Để Bình Luận
+    </button>
+}
+
+@foreach (var item in Model)
+{
+    <hr />
+    <p><b>@item.Username</b></p>
+    <p>@item.Content</p>
+    try
+    {
+        if (Session["userClient"].ToString() == item.Username)
+        {
+            <a href="~/Comment/Delete/@item.CommentId" onclick="return confirm('Bạn muốn xóa bình luận này chứ?');">Xóa Bình Luận Của Bạn</a>
+        }
+    }
+    catch (NullReferenceException) { }
+}

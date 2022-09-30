@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "PopularestBook";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<link href="~/Content/Effect.css" rel="stylesheet" />
+<h4>SÁCH BÁN MỚI NHỨT</h4>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-10 row">
+        @{
+            Html.RenderAction("GetBooksCards", "Books", new { books = Model });
+        }
+    </div>
+    <div class="col"></div>
+</div>
+<div class="row">
+    <div class="col-1">
+        @if (ViewBag.PageIndex != 1)
+        {
+            int nextPage = ViewBag.PageIndex - 1;
+            <button class="btn btn-dark"><a href="~/PopularContent/NewestBook/@nextPage">Prev</a></button>
+        }
+    </div>
+    <div class="col-10 text-center">
+        @using (Html.BeginForm("NewestBook", "PopularContent", FormMethod.Get))
+        {
+            <input type="number" class="text-body col-1" value="@ViewBag.PageIndex" min="1" name="page" />
+            <input type="submit" class="btn btn-dark" value="GO" />
+        }
+    </div>
+    <div class="col-1">
+        @if (Model.Count > 0)
+        {
+            int nextPage = ViewBag.PageIndex + 1;
+            <button class="btn btn-dark"><a href="~/PopularContent/NewestBook/@nextPage">Next</a></button>
+        }
+    </div>
+</div>
